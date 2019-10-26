@@ -6,13 +6,155 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/button_Habitacion1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Habitacion 1"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Habitacion1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_Habitacion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Habitacion 2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Habitacion2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Habitacion1" />
+
+    <Button
+        android:id="@+id/button_Habitacion3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Habitacion 3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Habitacion3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Habitacion2" />
+
+    <Button
+        android:id="@+id/button_Habitacion4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Habitacion 4"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Habitacion4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Habitacion3" />
+
+    <Button
+        android:id="@+id/button_Cocina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Cocina"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Cocina"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Habitacion4" />
+
+    <Button
+        android:id="@+id/button_Bano"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Baño"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_Bano"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Cocina" />
+
+    <ImageView
+        android:id="@+id/imageView_Habitacion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Habitacion1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Habitacion1"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/imageView_Habitacion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/button_Habitacion2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Habitacion2"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/imageView_Habitacion3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Habitacion3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Habitacion3"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/imageView_Habitacion4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Habitacion4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Habitacion4"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/imageView_Cocina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Cocina"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Cocina"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/imageView_Bano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_Bano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_Bano"
+        app:layout_constraintVertical_bias="0.473"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
