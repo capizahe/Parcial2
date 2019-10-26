@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Consumer.loadRoomsStatus();
         setContentView(R.layout.activity_main);
         hab1 = findViewById(R.id.button_Habitacion1);
         hab2 = findViewById(R.id.button_Habitacion2);
@@ -32,14 +33,12 @@ public class MainActivity extends AppCompatActivity {
         im_hab4 = findViewById(R.id.imageView_Habitacion4);
         im_bano = findViewById(R.id.imageView_Bano);
         im_cocina = findViewById(R.id.imageView_Cocina);
-
-        Consumer.loadRoomsStatus();
         Log.i("Array", Arrays.toString(Consumer.room_status.toArray()));
-
         hab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(2);
+                updateImages();
             }
         });
 
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(3);
+                updateImages();
             }
         });
 
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(4);
+                updateImages();
             }
         });
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(5);
+                updateImages();
             }
         });
 
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(0);
+                updateImages();
             }
         });
 
@@ -75,8 +78,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Consumer.updateLights(1);
+                updateImages();
             }
         });
+
+        updateImages();
 
     }
 
@@ -91,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         ingArr.add(im_hab4);
         for (int i = 0; i < Consumer.room_status.size(); i++){
             if(Consumer.room_status.get(i).getStatus()){
-                ingArr.get(i).setVisibility(View.GONE);
+                ingArr.get(i).setImageResource(R.drawable.ic_lightbulb_outline_yellow_24dp);
+            }else{
+                ingArr.get(i).setImageResource(R.drawable.ic_lightbulb_outline_black_24dp);
             }
         }
     }

@@ -21,12 +21,10 @@ import java.util.Arrays;
 
 public class Consumer {
 
-    public static final String[] REQUEST = {"http://10.10.9.101:3000/aptos/aptostatus","http://10.10.9.101:3000/aptos/changeAptoStatusBody",""};
-    public static ArrayList<RoomLight> room_status;
+    public static final String[] REQUEST = {"http://10.10.9.101:3000/aptos/aptostatus","http://10.10.9.101:3000/aptos/changeAptoStatusBody"};
+    public static ArrayList<RoomLight> room_status = new ArrayList<>();
 
     public static void loadRoomsStatus(){
-
-        room_status = new ArrayList<>();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -41,7 +39,6 @@ public class Consumer {
                         InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF8");
                         JSONObject jsonObject = new JSONObject(getStringFromInputStream(inputStream));
                         room_status.add(new RoomLight("luzBano",jsonObject.getBoolean("luzBano")));
-
                         room_status.add(new RoomLight("luzCocina",jsonObject.getBoolean("luzCocina")));
                         room_status.add(new RoomLight("luzHabitacion1",jsonObject.getBoolean("luzHabitacion1")));
                         room_status.add(new RoomLight("luzHabitacion2",jsonObject.getBoolean("luzHabitacion2")));
@@ -59,17 +56,18 @@ public class Consumer {
                 }
             }
         });
+        UpdateLights();
     }
 
     public static void updateLights(int index){
         RoomLight rl = room_status.get(index);
         rl.setStatus(!rl.getStatus());
-        generateJSON();
+        UpdateLights();
     }
 
     private static String generateJSON(){
         String new_json = "{\"luzBano\":" +room_status.get(0).getStatus()+
-                ",\"luzCocina\":true" +room_status.get(1).getStatus()+
+                ",\"luzCocina\":" +room_status.get(1).getStatus()+
                 ",\"luzHabitacion1\":" +room_status.get(2).getStatus()+
                 ",\"luzHabitacion2\":" +room_status.get(3).getStatus()+
                 ",\"luzHabitacion3\":" +room_status.get(4).getStatus()+
@@ -78,7 +76,7 @@ public class Consumer {
      return new_json;
     }
 
-    public static void UpdateLights(final String data){
+    public static void UpdateLights(){
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -90,20 +88,21 @@ public class Consumer {
                     httpURLConnection.setRequestProperty("Content-Type","application/json");
                     httpURLConnection.setDoOutput(true);
                     DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-                    wr.writeBytes(data);
+                    wr.writeBytes(generateJSON());
                     wr.close();
 
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    if(httpURLConnection.getResponseCode() == 200){
+                        if(httpURLConnection.getResponseCode() == 200){
                     }
 
                 }catch (MalformedURLException ex1){
-                    Log.e("Error", ex1.getMessage());
+                    Log.e("Error 1", ex1.getMessage());
 
                 }catch (ProtocolException ex2){
-                    Log.e("Error", ex2.getMessage());
+                    Log.e("Error 2", ex2.getMessage());
                 }catch (IOException ex3){
-                    Log.e("Error", ex3.getMessage());
+                    Log.e("Error 3", ex3.getMessage());
+                    ex3.printStackTrace();
 
 
                 }
