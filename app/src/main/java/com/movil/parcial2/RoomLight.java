@@ -5,6 +5,14 @@ public class RoomLight {
     private  String name;
     private Boolean status;
 
+    @Override
+    public String toString() {
+        return "RoomLight{" +
+                "name='" + name + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
     public RoomLight(String name, Boolean status) {
         this.name = name;
         this.status = status;

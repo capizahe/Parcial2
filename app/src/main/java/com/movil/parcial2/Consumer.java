@@ -17,15 +17,16 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Consumer {
 
-    public static final String[] REQUEST = {"http://192.168.103.141:3000/aptos/aptostatus","http://192.168.103.141:3000/aptos/changeAptoStatusBody",""};
+    public static final String[] REQUEST = {"http://10.10.9.101:3000/aptos/aptostatus","http://10.10.9.101:3000/aptos/changeAptoStatusBody",""};
     public static ArrayList<RoomLight> room_status;
 
-    private static void loadRoomsStatus(){
-        ArrayList<RoomLight> rooms = new ArrayList<>();
+    public static void loadRoomsStatus(){
 
+        room_status = new ArrayList<>();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -36,35 +37,37 @@ public class Consumer {
                     httpURLConnection.setRequestMethod("GET");
 
                     InputStream inputStream = httpURLConnection.getInputStream();
-
                     if(httpURLConnection.getResponseCode() == 200 ){
                         InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF8");
                         JSONObject jsonObject = new JSONObject(getStringFromInputStream(inputStream));
                         room_status.add(new RoomLight("luzBano",jsonObject.getBoolean("luzBano")));
+
                         room_status.add(new RoomLight("luzCocina",jsonObject.getBoolean("luzCocina")));
                         room_status.add(new RoomLight("luzHabitacion1",jsonObject.getBoolean("luzHabitacion1")));
                         room_status.add(new RoomLight("luzHabitacion2",jsonObject.getBoolean("luzHabitacion2")));
                         room_status.add(new RoomLight("luzHabitacion3",jsonObject.getBoolean("luzHabitacion3")));
                         room_status.add(new RoomLight("luzHabitacion4",jsonObject.getBoolean("luzHabitacion4")));
+                        System.out.println(room_status.toString());
                     }
                 }catch (MalformedURLException E){
+                    E.printStackTrace();
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException ex){
-
+                    ex.printStackTrace();
                 }
             }
         });
     }
 
-    public void updateLights(int index){
+    public static void updateLights(int index){
         RoomLight rl = room_status.get(index);
         rl.setStatus(!rl.getStatus());
         generateJSON();
     }
 
-    public String generateJSON(){
+    private static String generateJSON(){
         String new_json = "{\"luzBano\":" +room_status.get(0).getStatus()+
                 ",\"luzCocina\":true" +room_status.get(1).getStatus()+
                 ",\"luzHabitacion1\":" +room_status.get(2).getStatus()+
@@ -75,7 +78,7 @@ public class Consumer {
      return new_json;
     }
 
-    public void UpdateLights(final String data){
+    public static void UpdateLights(final String data){
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -95,17 +98,20 @@ public class Consumer {
                     }
 
                 }catch (MalformedURLException ex1){
+                    Log.e("Error", ex1.getMessage());
 
                 }catch (ProtocolException ex2){
-
+                    Log.e("Error", ex2.getMessage());
                 }catch (IOException ex3){
+                    Log.e("Error", ex3.getMessage());
+
 
                 }
 
             }
         });
     }
-    
+
     public static String getStringFromInputStream(InputStream stream) throws IOException {
         int n = 0;
         char[] buffer = new char[1024 * 4];
